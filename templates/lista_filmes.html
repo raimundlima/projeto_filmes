@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}  {% endblock %}
+
+{% block content %}
+    
+    
+    
+    <div class="container">
+     
+        <h1 class="titulo">  Lista de Filmes</h1>
+        <table class="table table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Titulo</th>
+              <th scope="col">Ano de Lançamento</th>
+              <th scope="col">Sinopse</th>
+              <th scope="col">Gênero</th>
+              <th scope="col">Capa</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+                {%for filme in filmes %}
+              <th scope="col"></th>
+              <td>{{filme.id_filme}}</td>
+              <td>{{filme.nome}}</td>
+              <td>{{filme.ano_lancamento}}</td>
+              <td>{{filme.Sinopse}}</td>
+              <td>{{filme.genero}}</td>
+              <td><img src="{{filme.capa}}" alt="Imagem" width="100"></td>
+              {% endfor %}
+             
+            </tr>
+        
+          
+          </tbody>
+        </table>
+    </div>
+{% endblock %}

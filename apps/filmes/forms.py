@@ -11,8 +11,17 @@ class FilmeForm(forms.ModelForm):
             ('suspense' , 'Suspense'),
         )
     genero = forms.ChoiceField(choices= GENERO_CHOICES, label='Gênero')
-    
-    
+    nome = forms.CharField(
+        label="Nome",
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control'
+            }
+        )
+    )
+
+
     
     
     class Meta:

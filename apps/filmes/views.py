@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import Filme
 from .forms import FilmeForm
+from django.contrib import messages
 
 # Create your views here.
 
@@ -10,10 +11,12 @@ def cadastro (request):
         form = FilmeForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request,'produto incluido com sucesso!')
+
             
             
            
-            return redirect('lista')
+            return redirect('cadastro_filmes:lista')
     
     else:
         form = FilmeForm()
@@ -28,6 +31,4 @@ def lista (request):
         filmes = Filme.objects.all()
     return render (request, 'lista_filmes.html',{'filmes':filmes})
 
-def teste(request):
-    return HttpResponse("Teste")
 

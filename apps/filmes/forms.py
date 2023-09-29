@@ -4,13 +4,23 @@ from .models import Filme
 class FilmeForm(forms.ModelForm):
     
     GENERO_CHOICES = (
-            ('acao' , 'Ação'),
-            ('comedia' , 'Comédia'),
-            ('ficcao' , 'Ficção'),
-            ('terror' , 'Terror'),
-            ('suspense' , 'Suspense'),
+            ('Ação' , 'Ação'),
+            ('Comedia' , 'Comédia'),
+            ('Ficção' , 'Ficção'),
+            ('Terror' , 'Terror'),
+            ('Suspense' , 'Suspense'),
+            ('Drama' , 'Drama'),
         )
-    genero = forms.ChoiceField(choices= GENERO_CHOICES, label='Gênero')
+    genero = forms.ChoiceField(
+        choices= GENERO_CHOICES, label='Gênero',
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control'
+            }
+        )
+    )
+    
+    
     nome = forms.CharField(
         label="Nome",
         required=True,
@@ -20,6 +30,39 @@ class FilmeForm(forms.ModelForm):
             }
         )
     )
+
+    ano_lancamento = forms.CharField(
+        label="Ano Lanamento:",
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control'
+            }
+        )
+    )
+
+
+    Sinopse = forms.CharField(
+        label="Sinopse:",
+        required=True,
+        widget=forms.Textarea(
+            attrs={
+                'class': 'form-control'
+            }
+        )
+    )
+
+
+    capa = forms.CharField(
+        label="Capa:",
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control'
+            }
+        )
+    )
+
 
 
     

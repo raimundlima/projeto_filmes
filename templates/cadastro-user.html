@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}  {% endblock %}
+
+{% block content %}
+
+
+{% block js %}    
+<script>
+    function usernameigual(username) {
+
+        Swal.fire ({
+      
+             "text": "{{m}}",
+              "icon": "error"
+      
+
+    })
+
+    }
+  
+
+
+  </script>
+  {% endblock %}
+
+<div class="container">
+    <h1 class="mt-4">Cadastro de Usuário</h1>
+    <form action ="{% url 'cadastro_usuarios:cadastro_user' %}"method="POST">
+        {% csrf_token %}
+
+        <input type="text" placeholder="Username" name="username">
+        <br>
+        <br>
+        <input type="email" placeholder="Email" name="email">
+        <br>
+        <br>
+        <input type="password" placeholder="senha" name="senha">
+        
+
+       
+                  
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center"><!--Botões do form-->
+            <button type="submit" class="btn btn-primary btn-sm">Cadastrar</button>
+            <button type="reset" class="btn btn-danger btn-sm">Limpar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -6,7 +6,7 @@ app_name = 'cadastro_filmes'
 
 urlpatterns = [
     
-    path ('lista', lista , name ='lista'),
+    path ('lista/', lista , name ='lista'),
     path ('cadastro/', cadastro, name ='cadastro'),
     
 ]

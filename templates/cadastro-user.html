@@ -5,26 +5,9 @@
 {% block content %}
 
 
-{% block js %}    
-<script>
-    function usernameigual(username) {
-
-        Swal.fire ({
-      
-             "text": "{{m}}",
-              "icon": "error"
-      
-
-    })
-
-    }
-  
-
-
-  </script>
-  {% endblock %}
 
 <div class="container">
+    
     <h1 class="mt-4">Cadastro de Usuário</h1>
     <form action ="{% url 'cadastro_usuarios:cadastro_user' %}"method="POST">
         {% csrf_token %}

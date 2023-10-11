@@ -3,6 +3,7 @@ from django.shortcuts import render ,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate 
 from django.contrib.auth import login as login_django
+from django.contrib.auth import logout
 from django.contrib import messages
 
 
@@ -33,7 +34,7 @@ def cadastro_user(request):
          user = User.objects.create_user(username=username, email=email , password=senha)
          user.save()
          messages.success(request,'Usúario cadastrado com sucesso!')
-        return redirect('cadastro_filmes:lista')
+        return redirect('cadastro_usuarios:login')
 
 
 
@@ -47,7 +48,7 @@ def login (request):
         if user:
             login_django(request, user)
             messages.success(request,'Usúario logado com sucesso!')
-            return redirect ( 'cadastro_filmes:cadastro')
+            return redirect ( 'cadastro_filmes:lista')
         
         else:
             messages.error(request,'Email ou senha invalidos!')
@@ -57,12 +58,8 @@ def login (request):
         return render(request, 'login.html')
 
 
+def sair (request):
+    logout(request)
+    return redirect('cadastro_filmes:slider')
 
-
-def minha_view(request):
-    username = None
-    if request.User.is_authenticated:
-        username = request.user.username
-
-    return render(request, 'minha_template.html', {'username': username})
 

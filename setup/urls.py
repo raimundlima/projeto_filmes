@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include ('apps.filmes.urls', namespace='cadastro_filmes')),
     path('auth/', include ('apps.usuarios.urls', namespace='cadastro_usuarios')),
-    path('', views.lista, name='pagina_inicial')
+    path('', views.slider, name='pagina_inicial')
    
     
 ]

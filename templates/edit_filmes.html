@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}  {% endblock %}
+
+{% block content %}
+    
+    
+    
+  <div class="container">
+     
+        <h1 class="titulo">  Editar Filme</h1>
+
+        <form action="{% url 'cadastro_filmes:edit_filmes' id_filme %}" method="post">
+    
+          {% csrf_token %}
+  
+          {% for field in form.visible_fields %}
+          <div class="row mb-3">
+              <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field }}
+          </div>
+          {% endfor %}
+          
+          <button class="btn btn-primary" type="submit">Salvar</button>
+      </form>
+
+        
+        
+  </div>
+{% endblock %}

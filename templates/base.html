@@ -6,7 +6,15 @@
     <title>{% block title %}Título Padrão{% endblock %}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-</head>
+    <style>
+    .imagem-slideshow {
+   
+    max-height: 500px; /* Defina a altura máxima desejada */
+}
+  </style>
+
+
+  </head>
 <body>
     <div class="container">
       {% for message in messages %}
@@ -18,9 +26,28 @@
         <header>
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
-                  <a class="navbar-brand" href="{% url 'cadastro_filmes:lista' %}">Home</a>
-                  <a class="navbar-brand" href="{% url 'cadastro_usuarios:cadastro_user' %}">Cadastrar</a>
-                  <a class="navbar-brand" href="{% url 'cadastro_usuarios:login'%}">Login</a>
+                  {% if user.is_authenticated%}
+                  Olá, {{ user }}!
+                  <a class="navbar-brand" href="{% url 'cadastro_filmes:slider' %}">Home</a>
+                  <a class="navbar-brand" href="{% url 'cadastro_filmes:cadastro' %}">Incluir filme</a>
+                  <a class="navbar-brand" href="{% url 'cadastro_usuarios:sair'%}">Logout</a>
+
+                  {% else %}
+                  <a class="navbar-brand" href="{% url 'cadastro_filmes:slider' %}">Home</a>
+                  <a class="navbar-brand" href="{% url 'cadastro_usuarios:cadastro_user'%}">Cadastrar</a>
+                  <a class="navbar-brand" href="{% url 'cadastro_usuarios:login'%}" id="openLoginModal">Login</a>
+                  <script>
+                    $(document).ready(function() {
+                        // Quando o link "Login" com id "openLoginModal" é clicado, impedir a navegação padrão
+                        // e abrir o modal de login
+                        $("#openLoginModal").click(function(event) {
+                            event.preventDefault(); // Impede a navegação padrão
+                            $("#loginModal").modal('show'); // Abre o modal de login
+                        });
+                    });
+                </script>
+
+                  {% endif %}
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
@@ -34,13 +61,7 @@
                     <form class="d-flex" role="search">
                       <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
                      <button class="btn btn-outline-success" type="submit">Buscar</button>
-                     <div id="usuario_logado">
-                      {% if username %}
-                          Bem-vindo, {{ username }}!
-                      {% else %}
-                          Você não está logado.
-                      {% endif %}
-                  </div>
+                     
                     </form>
                   </div>
                 </div>
@@ -56,6 +77,8 @@
         </footer>
     
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        
        
         
 
